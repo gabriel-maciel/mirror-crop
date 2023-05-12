@@ -1,6 +1,10 @@
-<script>
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+<script lang="ts">
+	let githubIcon = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/github.svg";
+	let twitterIcon = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/twitter.svg";
+  
+	const openInNewTab = (url: string) => {
+	  window.open(url, '_blank');
+	};
 </script>
 
 <header class="header">
@@ -10,9 +14,13 @@
 		<h2 class="font-mono font-bold text-gray-600">Flip or rotate your image</h2>
 	</div>
 	<div class="social">
-		<a>Star on Github</a>
-		<a>Twitter</a>
-	</div>
+		<button class="social-button" on:click={() => openInNewTab('https://github.com/gabriel-maciel/mirror-crop')}>
+		  <img class="social-button-icon" src={githubIcon} alt="GitHub logo" /> Star on Github
+		</button>
+		<button class="social-button" on:click={() => openInNewTab('https://twitter.com')}>
+		  <img class="social-button-icon" src={twitterIcon} alt="Twitter logo" />
+		</button>
+	  </div>
 </header>
 
 <style>
@@ -27,6 +35,28 @@
 		padding: 10px;
 		margin: 5px;
 	}
+
+	.social {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: flex-end;
+	}
+
+	.social-button-icon {
+		width: 1rem;
+	}
+
+	.social-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espacio entre el ícono y el texto */
+    padding: 0.5rem;
+    background-color: #007bFF;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
 
 	.font-mono {
 		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New,
