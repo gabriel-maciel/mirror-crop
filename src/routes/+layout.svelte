@@ -1,31 +1,34 @@
 <script>
 	import Header from './Header.svelte';
+	import ImagePanel from './ImagePanel.svelte';
 	import './styles.css';
 </script>
 
 <div class="app">
-	<Header />
-
-	<main>
-		<slot />
-	</main>
+	<div class="container">
+		<Header />
+		<ImagePanel />
+	</div>
 </div>
 
 <style>
 	.app {
 		display: flex;
-		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		min-height: 100vh;
+		margin: 0;
+		background: linear-gradient(to bottom, #d8f3dc, #ffffff);
+		font-family: Arial, sans-serif;
 	}
 
-	main {
-		flex: 1;
+	.container {
 		display: flex;
 		flex-direction: column;
-		padding: 1rem;
+		max-width: 56rem;
 		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		border-radius: 10px;
+		overflow: hidden;
 	}
 </style>

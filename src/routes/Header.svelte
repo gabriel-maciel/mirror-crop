@@ -3,46 +3,54 @@
 	import github from '$lib/images/github.svg';
 </script>
 
-<header>
-	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="MirrorCrop" />
-		</a>
+<header class="header">
+	<div class="tittle">
+		<h1 class="font-mono tracking-tight text-xl">MirrorCrop</h1>
+		<br />
+		<h2 class="font-mono font-bold text-gray-600">Flip or rotate your image</h2>
 	</div>
-
-	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
+	<div class="social">
+		<a>Star on Github</a>
+		<a>Twitter</a>
 	</div>
 </header>
 
 <style>
-	header {
+	.header {
 		display: flex;
-		justify-content: space-between;
+		flex-direction: row;
 	}
 
-	.corner {
-		width: 3em;
-		height: 3em;
+	.tittle,
+	.social {
+		flex: 1;
+		padding: 10px;
+		margin: 5px;
+		background-color: #ffffff;
+		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		border-radius: 10px;
 	}
 
-	.corner a {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
+	.font-mono {
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New,
+			monospace;
 	}
 
-	.corner img {
-		width: 2em;
-		height: 2em;
-		object-fit: contain;
+	.tracking-tight {
+		letter-spacing: -0.025em;
 	}
 
-	a:hover {
-		color: var(--color-theme-1);
+	.text-xl {
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+	}
+
+	.font-bold {
+		font-weight: 700;
+	}
+
+	.text-gray-600 {
+		--tw-text-opacity: 1;
+		color: rgb(75 85 99 / var(--tw-text-opacity));
 	}
 </style>
