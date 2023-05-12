@@ -30,6 +30,7 @@
 	.image-panel {
 		display: flex;
 		flex-direction: row;
+		justify-content: space-between;
 	}
 
 	.left-card,
@@ -40,6 +41,8 @@
 		padding: 10px;
 		margin: 5px;
 		min-height: 35vh;
+		box-shadow: 0 0 1rem rgba(0,0,0,0.1);
+		border-radius: 1rem;
 	}
 
 	.card-image {

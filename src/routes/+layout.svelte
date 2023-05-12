@@ -18,7 +18,7 @@
 		align-items: center;
 		min-height: 100vh;
 		margin: 0;
-		background: linear-gradient(to bottom, #d8f3dc, #ffffff);
+		background: linear-gradient(to bottom, #f8f9fa, #e9ecef);
 		font-family: Arial, sans-serif;
 	}
 
@@ -27,8 +27,6 @@
 		flex-direction: column;
 		max-width: 56rem;
 		width: 100%;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-		border-radius: 10px;
 		overflow: hidden;
 	}
 </style>
