@@ -6,6 +6,8 @@
 	let ctx: CanvasRenderingContext2D | null;
 	let isImageLoaded = false;
 	let uploadedImage: HTMLImageElement | null = null;
+	let isFlipped = false;
+	let flipRotationOffset = 0;
 
 	function clickUpload() {
 		let uploadElement = document.getElementById('upload');
@@ -50,12 +52,21 @@
 	});
 
 	function drawRotated(this: HTMLImageElement) {
-		if (!ctx || !canvas) throw new Error('Contexto de canvas no está definido');
+		if (!ctx || !canvas) {
+			throw new Error('Contexto de canvas no está definido');
+		}
 
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx.save();
 		ctx.translate(canvas.width / 2, canvas.height / 2);
-		ctx.rotate((currentRotation * Math.PI) / 180);
+
+		if (isFlipped) {
+			ctx.scale(-1, 1);
+			ctx.rotate((-flipRotationOffset * Math.PI) / 180);
+		} else {
+			ctx.rotate((currentRotation * Math.PI) / 180);
+		}
+
 		ctx.drawImage(this, -this.width / 2, -this.height / 2);
 		ctx.restore();
 	}
@@ -63,6 +74,14 @@
 	function rotate() {
 		if (canvas && ctx && isImageLoaded && uploadedImage) {
 			currentRotation += 90;
+			flipRotationOffset += 90;
+			drawRotated.call(uploadedImage);
+		}
+	}
+
+	function flip() {
+		if (canvas && ctx && isImageLoaded && uploadedImage) {
+			isFlipped = !isFlipped;
 			drawRotated.call(uploadedImage);
 		}
 	}
@@ -103,7 +122,10 @@
 		</div>
 		<div class="card-footer">
 			<button class="btn btn-secondary" on:click={rotate} disabled={!isImageLoaded}>Rotate</button>
-			<button class="btn btn-secondary" on:click={download} disabled={!isImageLoaded}>Download</button>
+			<button class="btn btn-secondary" on:click={flip} disabled={!isImageLoaded}>Flip</button>
+			<button class="btn btn-secondary" on:click={download} disabled={!isImageLoaded}
+				>Download</button
+			>
 		</div>
 	</div>
 </main>
@@ -157,12 +179,12 @@
 
 	.btn-primary {
 		color: #000000;
-		background-color: #4FB69B;
+		background-color: #4fb69b;
 	}
 
 	.btn-secondary {
 		color: #000000;
-		background-color: #DFDFDF;
+		background-color: #dfdfdf;
 	}
 
 	.upload-icon {
