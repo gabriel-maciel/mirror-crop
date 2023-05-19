@@ -1,15 +1,11 @@
 <script lang="ts">
-	import ButtonBar from './ButtonBar.svelte';
 	import { onMount } from 'svelte';
 
-	const buttons = [{ icon: 'icono1' }, { icon: 'icono2' }, { icon: 'icono3' }, { icon: 'icono4' }];
-	const image =
-		'https://fastly.picsum.photos/id/180/200/200.jpg?hmac=YtJJ-CeQThqv_K6NzUnKS6Q8-tjxUVkSKeDsStrjEyM';
-	let leftImageElement: HTMLImageElement;
-	let imgElement: HTMLImageElement;
 	let currentRotation = 0;
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D | null;
+	let isImageLoaded = false;
+	let uploadedImage: HTMLImageElement | null = null;
 
 	function clickUpload() {
 		let uploadElement = document.getElementById('upload');
@@ -24,30 +20,33 @@
 
 		if (file) {
 			const imageDataUrl = URL.createObjectURL(file);
+			const uploadIcon = document.getElementById('uploadIcon');
+			uploadedImage = document.getElementById('uploadedImage') as HTMLImageElement;
+
+			if (uploadedImage) {
+				uploadedImage.src = imageDataUrl;
+				uploadedImage.style.display = 'block';
+			}
+
+			if (uploadIcon) {
+				uploadIcon.style.display = 'none';
+			}
 
 			let img = new Image();
 			img.crossOrigin = 'Anonymous';
 			img.onload = () => {
-				imgElement = img; // Update imgElement with the new image
 				drawRotated.call(img);
 				URL.revokeObjectURL(imageDataUrl);
+				isImageLoaded = true;
 			};
 			img.src = imageDataUrl;
-
-			leftImageElement.src = imageDataUrl; // set the src of leftImageElement to the new image
 		}
 	}
 
 	onMount(() => {
 		if (!canvas) throw new Error('Canvas no está definido');
-
 		ctx = canvas.getContext('2d');
 		if (!ctx) throw new Error('Contexto de canvas no está definido');
-
-		imgElement = new Image();
-		imgElement.crossOrigin = 'Anonymous';
-		imgElement.onload = drawRotated.bind(imgElement);
-		imgElement.src = image;
 	});
 
 	function drawRotated(this: HTMLImageElement) {
@@ -62,9 +61,9 @@
 	}
 
 	function rotate() {
-		currentRotation += 90;
-		if (canvas && ctx && imgElement) {
-			drawRotated.call(imgElement);
+		if (canvas && ctx && isImageLoaded && uploadedImage) {
+			currentRotation += 90;
+			drawRotated.call(uploadedImage);
 		}
 	}
 
@@ -81,8 +80,9 @@
 <main class="image-panel">
 	<div class="left-card">
 		<div class="card-image">
+			<img class="upload-icon" id="uploadIcon" src="/upload-icon.svg" alt="Upload icon" />
 			<!-- svelte-ignore a11y-img-redundant-alt -->
-			<img bind:this={leftImageElement} src={image} alt="Left Image" />
+			<img alt="An image" id="uploadedImage" style="display: none;" />
 		</div>
 		<div class="card-footer">
 			<input type="file" id="upload" accept="image/*" on:change={uploadImage} hidden />
@@ -95,8 +95,8 @@
 			<canvas bind:this={canvas} width="200" height="200" class="canvas-image" />
 		</div>
 		<div class="card-footer">
-			<button class="btn" on:click={rotate}>Rotate</button>
-			<button class="btn" on:click={download}>Download</button>
+			<button class="btn" on:click={rotate} disabled={!isImageLoaded}>Rotate</button>
+			<button class="btn" on:click={download} disabled={!isImageLoaded}>Download</button>
 		</div>
 	</div>
 </main>
@@ -148,5 +148,11 @@
 		border: none;
 		border-radius: 5px;
 		cursor: pointer;
+	}
+
+	.upload-icon {
+		width: 7rem;
+		height: 7rem;
+		opacity: 0.4;
 	}
 </style>
