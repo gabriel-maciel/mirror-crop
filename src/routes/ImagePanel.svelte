@@ -80,7 +80,14 @@
 <main class="image-panel">
 	<div class="left-card">
 		<div class="card-image">
-			<img class="upload-icon" id="uploadIcon" src="/upload-icon.svg" alt="Upload icon" />
+			<!-- svelte-ignore a11y-click-events-have-key-events -->
+			<img
+				class="upload-icon"
+				id="uploadIcon"
+				src="/upload-icon.svg"
+				alt="Upload icon"
+				on:click={clickUpload}
+			/>
 			<!-- svelte-ignore a11y-img-redundant-alt -->
 			<img alt="An image" id="uploadedImage" style="display: none;" />
 		</div>
@@ -154,5 +161,9 @@
 		width: 7rem;
 		height: 7rem;
 		opacity: 0.4;
+	}
+
+	.upload-icon:hover {
+		cursor: pointer;
 	}
 </style>
