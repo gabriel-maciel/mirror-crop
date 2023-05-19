@@ -22,7 +22,7 @@
 		>
 			<img class="social-button-icon" src={githubIcon} alt="GitHub logo" /> Star on Github
 		</button>
-		<button class="social-button" on:click={() => openInNewTab('https://twitter.com')}>
+		<button class="social-button" on:click={() => openInNewTab('https://twitter.com/gabimaciel_r')}>
 			<img class="social-button-icon" src={twitterIcon} alt="Twitter logo" />
 		</button>
 	</div>
