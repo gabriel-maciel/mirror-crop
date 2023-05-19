@@ -1,9 +1,11 @@
 <script lang="ts">
-	let githubIcon = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/github.svg";
-	let twitterIcon = "https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/twitter.svg";
-  
+	let githubIcon =
+		'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/github.svg';
+	let twitterIcon =
+		'https://raw.githubusercontent.com/FortAwesome/Font-Awesome/master/svgs/brands/twitter.svg';
+
 	const openInNewTab = (url: string) => {
-	  window.open(url, '_blank');
+		window.open(url, '_blank');
 	};
 </script>
 
@@ -14,13 +16,16 @@
 		<h2 class="font-mono font-bold text-gray-600">Flip or rotate your image</h2>
 	</div>
 	<div class="social">
-		<button class="social-button" on:click={() => openInNewTab('https://github.com/gabriel-maciel/mirror-crop')}>
-		  <img class="social-button-icon" src={githubIcon} alt="GitHub logo" /> Star on Github
+		<button
+			class="social-button"
+			on:click={() => openInNewTab('https://github.com/gabriel-maciel/mirror-crop')}
+		>
+			<img class="social-button-icon" src={githubIcon} alt="GitHub logo" /> Star on Github
 		</button>
 		<button class="social-button" on:click={() => openInNewTab('https://twitter.com')}>
-		  <img class="social-button-icon" src={twitterIcon} alt="Twitter logo" />
+			<img class="social-button-icon" src={twitterIcon} alt="Twitter logo" />
 		</button>
-	  </div>
+	</div>
 </header>
 
 <style>
@@ -47,16 +52,26 @@
 	}
 
 	.social-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem; /* Espacio entre el ícono y el texto */
-    padding: 0.5rem;
-    background-color: #007bFF;
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-  }
+		display: flex;
+		align-items: center;
+		gap: 0.5rem; /* Espacio entre el ícono y el texto */
+		padding: 0.5rem;
+		background-color: rgba(
+			75,
+			85,
+			99,
+			0.1
+		); /* color de fondo que se mezcla con el color del texto */
+		color: rgba(75, 85, 99, var(--tw-text-opacity)); /* color del texto de los botones */
+		border: none;
+		border-radius: 0.5rem;
+		cursor: pointer;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New,
+			monospace;
+		letter-spacing: -0.025em;
+		font-size: 0.9rem;
+		font-weight: 700;
+	}
 
 	.font-mono {
 		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New,

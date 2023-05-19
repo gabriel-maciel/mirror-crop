@@ -41,7 +41,7 @@
 		padding: 10px;
 		margin: 5px;
 		min-height: 35vh;
-		box-shadow: 0 0 1rem rgba(0,0,0,0.1);
+		box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
 		border-radius: 1rem;
 	}
 
