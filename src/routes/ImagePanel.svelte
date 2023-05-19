@@ -60,7 +60,7 @@
 			<img src={image} alt="Left Image" />
 		</div>
 		<div class="card-footer">
-			<button class="btn">Subir imagen</button>
+			<button class="btn">Upload image</button>
 		</div>
 	</div>
 	<div class="right-card">
@@ -69,8 +69,8 @@
 			<canvas bind:this={canvas} width="200" height="200" class="canvas-image"></canvas>
 		</div>
 		<div class="card-footer">
-			<button class="btn" on:click={rotate}>Girar</button>
-			<button class="btn" on:click={download}>Descargar</button>
+			<button class="btn" on:click={rotate}>Rotate</button>
+			<button class="btn" on:click={download}>Download</button>
 		</div>
 	</div>
 </main>
