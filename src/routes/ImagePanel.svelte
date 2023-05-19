@@ -93,7 +93,7 @@
 		</div>
 		<div class="card-footer">
 			<input type="file" id="upload" accept="image/*" on:change={uploadImage} hidden />
-			<button class="btn" on:click={clickUpload}>Upload image</button>
+			<button class="btn btn-primary" on:click={clickUpload}>Upload image</button>
 		</div>
 	</div>
 	<div class="right-card">
@@ -102,8 +102,8 @@
 			<canvas bind:this={canvas} width="200" height="200" class="canvas-image" />
 		</div>
 		<div class="card-footer">
-			<button class="btn" on:click={rotate} disabled={!isImageLoaded}>Rotate</button>
-			<button class="btn" on:click={download} disabled={!isImageLoaded}>Download</button>
+			<button class="btn btn-secondary" on:click={rotate} disabled={!isImageLoaded}>Rotate</button>
+			<button class="btn btn-secondary" on:click={download} disabled={!isImageLoaded}>Download</button>
 		</div>
 	</div>
 </main>
@@ -150,11 +150,19 @@
 	.btn {
 		padding: 10px;
 		margin-top: 10px;
-		color: white;
-		background-color: #007bff;
 		border: none;
 		border-radius: 5px;
 		cursor: pointer;
+	}
+
+	.btn-primary {
+		color: #000000;
+		background-color: #4FB69B;
+	}
+
+	.btn-secondary {
+		color: #000000;
+		background-color: #DFDFDF;
 	}
 
 	.upload-icon {
