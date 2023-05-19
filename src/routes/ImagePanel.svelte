@@ -3,6 +3,8 @@
 	const buttons = [{ icon: 'icono1' }, { icon: 'icono2' }, { icon: 'icono3' }, { icon: 'icono4' }];
 	const image =
 		'https://fastly.picsum.photos/id/180/200/200.jpg?hmac=YtJJ-CeQThqv_K6NzUnKS6Q8-tjxUVkSKeDsStrjEyM';
+
+	let currentRotation = 0;
 </script>
 
 <main class="image-panel">
@@ -18,10 +20,10 @@
 	<div class="right-card">
 		<div class="card-image">
 			<!-- svelte-ignore a11y-img-redundant-alt -->
-			<img src={image} alt="Right Image" />
+			<img src={image} alt="Right Image" style="transform: rotate({currentRotation}deg);" />
 		</div>
 		<div class="card-footer">
-			<button class="btn">Girar</button>
+			<button class="btn" on:click={() => currentRotation += 90}>Girar</button>
 		</div>
 	</div>
 </main>
